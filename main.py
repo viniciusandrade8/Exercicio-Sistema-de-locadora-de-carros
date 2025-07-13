@@ -1,16 +1,23 @@
 from carro import Carro
 from cliente import Cliente
+from locadora import Locadora
 
 
-# cadastrando carro
-carro1 = Carro(modelo="Polo", ano=2024, placa="XLZ-6827")
-carro2 = Carro(modelo="HB20", ano=2025, placa="BTH-4458")
+# instâncias com listas vazias
+locadora = Locadora(lista_de_carros=[], lista_de_clientes=[])
 
-# alugando e devolvendo carro
-carro1.alugar()
-carro1.alugar()
-carro1.devolver()
+# adicionando alguns carros
+locadora.adicionar_carro("Polo", 2024, "XVT-2045")
+locadora.adicionar_carro("HB-20", 2025, "TZD-4955")
+locadora.adicionar_carro("City", 2023, "GHN-0946")
 
-# cadastrando cliente
-cliente1 = Cliente(nome="Vinicius Andrade", cpf="433.758.333-44")
-print(cliente1)
+# alugando um dos carros manualmente
+locadora.lista_de_carros[1].alugar() #Aluga o HB-20
+
+# testando o método que lista os carros disponíveis
+print("Carros dispníveis para aluguel:")
+locadora.listar_carros_disponiveis()
+
+locadora.lista_de_carros[1].devolver()
+print("Carros disponíveis para aluguel:")
+locadora.listar_carros_disponiveis()
