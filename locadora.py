@@ -31,7 +31,29 @@ class Locadora:
 
 
     def alugar_carro(self, placa, cpf):
-        pass
+        cliente_encontrado = any(cliente.cpf == cpf for cliente in self.lista_de_clientes)
+        if not cliente_encontrado:
+            print("Cliente não encontrado.")
+            return
+
+        for carro in self.lista_de_carros:
+            if carro.placa == placa:
+                if carro.disponivel:
+                    carro.alugar()
+                    print(f"O carro com a placa {placa} alugado com sucesso para o cliente {cpf}.")
+                else:
+                    print(f"O carro com a placa {placa} já está alugado.")
+                return
+            print("Carro não encontrado")
+
 
     def devolver_carro(self, placa):
-        pass
+        for carro in self.lista_de_carros:
+            if carro.placa == placa:
+                if not carro.disponivel:
+                    carro.devolver()
+                    print(f"O carro com a placa {placa} foi devolvido com sucesso.")
+                else:
+                    print(f"O carro com a placa {placa} já está disponivel.")
+                return
+            print("Carro não encontrado.")
